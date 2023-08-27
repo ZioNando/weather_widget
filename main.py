@@ -26,9 +26,8 @@ class WeatherApp(rumps.App):
     def description(self):
         return self.current_weather.detailed_status.capitalize()
 
-    @rumps.timer(1)
+    @rumps.timer(1200)
     def update_weather(self, _):
-        print('hi')
         self.title = f"{round(self.temperature)}°C {self.description}"
 
     @rumps.clicked("Refresh data")
