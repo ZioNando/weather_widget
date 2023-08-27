@@ -8,7 +8,17 @@ Usage:
 from setuptools import setup
 
 APP = ['main.py']
+
+OPTIONS = {
+    'argv_emulation': True,
+    'plist': {
+        'LSUIElement': True,
+    },
+    'packages': ['rumps'],
+}
+
 setup(
     app=APP,
-    setup_requires=['py2app']
+    options={'py2app': OPTIONS},
+    setup_requires=['py2app'],
 )
