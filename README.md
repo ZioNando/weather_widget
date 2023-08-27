@@ -1,18 +1,9 @@
 # WeatherWidget
 Weather Widget for OS X
 
-get api key here https://openweathermap.org/api
+1) get api key here https://openweathermap.org/api
 
-change        owm = pyowm.OWM('your_key')
+2) API_KEY = 'HERE_API_KEY'
+   DEFAULT_CITY = 'CITY, COUNTRY_ABBR'
 
-chnge        self.city = 'your_city,your_contry'
-
-change in main.app/Contents/Info.plist 
-
-    <key>CFBundleExecutable</key>
-    <string>main</string>
-    <key>LSUIElement</key>
-    <true/>
-
-
-
+3) Command: python setup.py py2app
