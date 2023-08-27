@@ -3,25 +3,39 @@ import rumps
 
 
 class WeatherApp(rumps.App):
+    API_KEY = 'YOUR_API_KEY'
+    DEFAULT_CITY = 'Roma,IT'
+
     def __init__(self):
         super().__init__(name="Weather Widget", title='Loading...')
-        owm = pyowm.OWM('API_KEY')
-        self.weather_manager = owm.weather_manager()
-        self.city = 'Roma,IT'
-        self.update_weather()
+        self.weather_manager = pyowm.OWM(self.API_KEY).weather_manager()
+        self.city = self.DEFAULT_CITY
+
+    @property
+    def observation(self):
+        return self.weather_manager.weather_at_place(self.city)
+
+    @property
+    def current_weather(self):
+        return self.observation.weather
+
+    @property
+    def temperature(self):
+        return self.current_weather.temperature('celsius')['temp']
+
+    @property
+    def description(self):
+        return self.current_weather.detailed_status.capitalize()
+
+    def update_weather(self):
+        self.title = f"{round(self.temperature)}°C {self.description}"
 
     @rumps.timer(600)
-    def update_weather(self, _=None):
-        observation = self.weather_manager.weather_at_place(self.city)
-        w = observation.weather
-        # wind = w.wind()['speed']  # speed of wind
-        temperature = w.temperature('celsius')['temp']
-        description = w.detailed_status  # or w.status
-
-        self.title = f"{round(temperature):}°C {description.capitalize()}"
+    def update_weather_periodically(self, _):
+        self.update_weather()
 
     @rumps.clicked("Refresh data")
-    def update_menu(self, _):
+    def refresh_data(self, _):
         self.update_weather()
 
 
