@@ -4,7 +4,7 @@ import rumps
 
 class WeatherApp(rumps.App):
     API_KEY = 'YOUR_KEY'
-    DEFAULT_CITY = 'Roma,IT'
+    DEFAULT_CITY = 'CITY,COUNTRY_ABBR'
 
     def __init__(self):
         super(WeatherApp, self).__init__("Weather Widget", 'Loading...')
