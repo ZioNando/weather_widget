@@ -1,5 +1,5 @@
 # WeatherWidget
-Weather Widget for OS X
+Weather widget for OS X
 
 1) get api key here https://openweathermap.org/api
 
